@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Bucket Rate Limiting</title>
+</head>
+<body>
+    <button id="requestBtn">Make Request</button>
+
+    <script>
+        // Token bucket rate limiting implementation
+        class TokenBucket {
+            constructor(capacity, fillRate) {
+                this.capacity = capacity;
+                this.tokens = capacity;
+                this.fillRate = fillRate;
+                this.lastFilled = Date.now();
+            }
+
+            takeToken() {
+                const now = Date.now();
+                const elapsedTime = now - this.lastFilled;
+                this.tokens += elapsedTime * (this.fillRate / 1000); // Add tokens based on fill rate
+
+                if (this.tokens > this.capacity) {
+                    this.tokens = this.capacity; // Cap tokens at capacity
+                }
+
+                if (this.tokens < 1) {
+                    return false; // No tokens available
+                } else {
+                    this.tokens--; // Consume a token
+                    this.lastFilled = now; // Update last filled time
+                    return true; // Token available, request allowed
+                }
+            }
+        }
+
+        // Create a token bucket with capacity 5 tokens and fill rate 1 token per second
+        const tokenBucket = new TokenBucket(5, 1);
+
+        // Function to handle button click event
+        function makeRequest() {
+            if (tokenBucket.takeToken()) {
+                console.log("Request allowed. Token remaining:", tokenBucket.tokens);
+                // Make your request here
+            } else {
+                console.log("Request denied. Token bucket empty.");
+                // Handle request denial (e.g., show error message)
+            }
+        }
+
+        // Attach click event listener to button
+        document.getElementById("requestBtn").addEventListener("click", makeRequest);
+    </script>
+</body>
+</html>
