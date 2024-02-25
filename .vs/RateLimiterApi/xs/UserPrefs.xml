@@ -4,13 +4,20 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.RateLimiterApi FirstBuild="True" PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.RateLimiterApi PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="RateLimiterApi/Middleware.cs">
+    <Files>
+      <File FileName="RateLimiterApi/Middleware.cs" Line="62" Column="1" />
+      <File FileName="RateLimiterApi/WeatherForecast.cs" />
+      <File FileName="RateLimiterApi/Program.cs" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="RateLimiterApi" expanded="True">
-            <Node name="RateLimiterApi" selected="True" />
+          <Node name="RateLimiterApi">
+            <Node name="RateLimiterApi" expanded="True">
+              <Node name="Middleware.cs" selected="True" />
+            </Node>
           </Node>
         </State>
       </Pad>

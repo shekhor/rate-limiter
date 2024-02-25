@@ -14,7 +14,7 @@ namespace RateLimiterApi
         private const int MAX_REQUESTS = 5; // Max requests allowed per minute
         private const long TIME_WINDOW = 60 * 1000; // Time window in milliseconds (1 minute)
 
-        private readonly Queue<long> _requestTimes = new Queue<long>();
+        private Dictionary<String, Queue<long>> requestTimesPerIp = new Dictionary<string, Queue<long>>();
 
         public Middleware(RequestDelegate next)
         {
@@ -27,14 +27,21 @@ namespace RateLimiterApi
 
             long currentTime = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
 
-            // Remove old request times
-            while (_requestTimes.Any() && currentTime - _requestTimes.Peek() > TIME_WINDOW)
+            String ipAdress = context.Connection.LocalIpAddress.ToString();
+
+            if (!requestTimesPerIp.ContainsKey(ipAdress))
             {
-                _requestTimes.Dequeue();
+                requestTimesPerIp[ipAdress] = new Queue<long>();
+            }
+
+            // Remove old request times
+            while (requestTimesPerIp[ipAdress].Any() && currentTime - requestTimesPerIp[ipAdress].Peek() > TIME_WINDOW)
+            {
+                requestTimesPerIp[ipAdress].Dequeue();
             }
 
             // Check if requests exceed the limit
-            if (_requestTimes.Count >= MAX_REQUESTS)
+            if (requestTimesPerIp[ipAdress].Count >= MAX_REQUESTS)
             {
                 context.Response.StatusCode = StatusCodes.Status429TooManyRequests;
                 await context.Response.WriteAsync("Rate limit exceeded. Please try again later.");
@@ -42,7 +49,7 @@ namespace RateLimiterApi
             }
 
             // Add current request time
-            _requestTimes.Enqueue(currentTime);
+            requestTimesPerIp[ipAdress].Enqueue(currentTime);
 
             // Call the next middleware in the pipeline
             await _next(context);

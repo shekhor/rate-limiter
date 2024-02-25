@@ -20,7 +20,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-//app.MapControllers();
+app.MapControllers();
 app.UseMiddleware<RateLimiterApi.Middleware>();
 
 app.Run();
