@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.9
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RateLimiterApi", "RateLimiterApi\RateLimiterApi.csproj", "{2CC5E8D5-A87C-4D5F-8413-1C93014CFA6D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2CC5E8D5-A87C-4D5F-8413-1C93014CFA6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CC5E8D5-A87C-4D5F-8413-1C93014CFA6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CC5E8D5-A87C-4D5F-8413-1C93014CFA6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CC5E8D5-A87C-4D5F-8413-1C93014CFA6D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8B8640DB-BF31-4E45-B6DF-393AFF73DB67}
+	EndGlobalSection
+EndGlobal
