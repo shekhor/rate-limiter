@@ -21,7 +21,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-app.UseMiddleware<RateLimiterApi.Middleware>();
+//app.UseMiddleware<RateLimiterApi.Middleware>();
+app.UseMiddleware<RateLimiterApi.SlidingWindowRateLimiterMiddleware>();
 
 app.Run();
 

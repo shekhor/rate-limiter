@@ -23,7 +23,7 @@ namespace RateLimiterApi
 
         public async Task Invoke(HttpContext context)
         {
-            Console.WriteLine("Request is going through RateLimitMiddleware");
+            Console.WriteLine("Request is going through token bucket RateLimitMiddleware");
 
             long currentTime = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
 
